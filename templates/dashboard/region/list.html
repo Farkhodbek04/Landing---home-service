@@ -1,0 +1,115 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}      <!--app-content open-->
+      <div class="main-content app-content mt-0">
+        <div class="side-app">
+
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+
+                <!-- PAGE-HEADER -->
+                <div class="d-flex justify-content-between">
+                    <div class="page-header">
+                        <h1 class="page-title">Rayonlar</h1>
+                    </div>
+
+                    {% if messages %}
+                    <div id="message_container" class="row" style="height: fit-content; margin-top: 10px; width: 30%;">
+                            {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                            <!-- <div style="display:block;" class="alert alert-primary">
+                                {{ message}}
+                            </div> -->
+                            <div class="alert alert-success">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                                <span class=""><svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24"><path fill="#13bfa6" d="M10.3125,16.09375a.99676.99676,0,0,1-.707-.293L6.793,12.98828A.99989.99989,0,0,1,8.207,11.57422l2.10547,2.10547L15.793,8.19922A.99989.99989,0,0,1,17.207,9.61328l-6.1875,6.1875A.99676.99676,0,0,1,10.3125,16.09375Z" opacity=".99"></path><path fill="#71d8c9" d="M12,2A10,10,0,1,0,22,12,10.01146,10.01146,0,0,0,12,2Zm5.207,7.61328-6.1875,6.1875a.99963.99963,0,0,1-1.41406,0L6.793,12.98828A.99989.99989,0,0,1,8.207,11.57422l2.10547,2.10547L15.793,8.19922A.99989.99989,0,0,1,17.207,9.61328Z"></path></svg></span>
+                                <strong>Success Message</strong>
+                                <hr class="message-inner-separator">
+                                <p>{{message}}</p>
+                            </div>
+                            {% elif message.tags == 'error' %}
+                            <div style="display:block;" class="alert alert-warning">
+                                {{ message}}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- PAGE-HEADER END -->
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Regionlar ro`yxati</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap text-md-nowrap mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>№</th>
+                                                <th>Name</th>
+                                                <th>O`zgartirish</th>
+                                                <th>O`chirish</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for region in regions %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{region.name}}</td>
+                                                <td><a href="{% url 'region_update' region.id %}" class="btn btn-icon  btn-success" style="color: white;"><i class="fa fa-arrow-right"></i></a></td>
+                                                <!-- <td><a href="{% url 'region_delete' region.id %}" class="btn btn-icon  btn-danger"><i class="fe fe-trash"></i></a></td> -->
+                                                <td>
+                                                    <a class="btn btn-danger me-3  mt-2" data-bs-target="#select2modal{{region.id}}" data-bs-toggle="modal" href="javascript:;">O`chirish </a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+
+            </div>
+            <!-- CONTAINER CLOSED -->
+
+        </div>
+    </div>
+    <!--app-content close-->
+{% for region in regions %}
+                <!-- Select2 modal -->
+                <div class="modal fade" id="select2modal{{region.id}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content modal-content-demo">
+                            <div class="modal-header">
+                                <h6 class="modal-title">Yanglikni o`chrish</h6>
+                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <form action="{% url 'region_delete' region.id %}" method="get">
+                                <div class="modal-body">
+                                    <h6>Yangilikni o`chrishga rozimisiz?</h6>
+                                    <!-- Select2 -->
+                                    <label for="chkb-1">Ha</label>
+                                    <input type="checkbox" id="chkb-1" required>
+                                    <!-- Select2 -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn ripple btn-danger" type="submit">O`chrish</button>
+                                    <button class="btn ripple btn-success">Qaytish</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Select2 modal -->
+{% endfor %}
+    {% endblock %}
+
+
