@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<div class="main-container container-fluid">
+
+    <!-- PAGE-HEADER -->
+    <div class="page-header">
+        <h1 class="page-title">Service yaratish</h1>
+    </div>
+    <!-- PAGE-HEADER END -->
+    
+    <!-- Row -->
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-xl-6 col-lg-12">
+
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Service yaratish</h3>
+                </div>
+                <form method="post" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    
+                    <label> Rasm</label>
+                    <div class="dropify-wrapper" >
+                        <div class="dropify-message"><span class="file-icon">
+                                <p>Drag and drop a file here or click</p>
+                            </span>
+                            <p class="dropify-error">Ooops, something wrong appended.</p>
+                        </div>
+                        <div class="dropify-loader"></div>
+                        <div class="dropify-errors-container">
+                            <ul></ul>
+                        </div><input type="file" class="dropify" data-bs-height="180" name="image"><button type="button"
+                            class="dropify-clear">Remove</button>
+                        <div class="dropify-preview"><span class="dropify-render"></span>
+                            <div class="dropify-infos">
+                                <div class="dropify-infos-inner">
+                                    <p class="dropify-filename"><span class="dropify-filename-inner"></span></p>
+                                    <p class="dropify-infos-message">Drag and drop or click to replace</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body pb-2">
+                        <div class="row row-sm">
+                            <div class="col-lg">
+                                <label> Sarlavha</label>
+                                <input class="form-control mb-4" placeholder="{{client.name}}" type="text" name="name" fdprocessedid="9w5cno">
+                            </div>
+                        </div>
+
+                        <label> Tana qism</label>
+                        <textarea class="form-control mb-4 " placeholder="Textarea (success state)" required="" rows="3" style="height: 60px;" name="opinion">{{client.opinion}}</textarea>
+                        <div class="row">
+                            <div class="col-9"></div>
+                            <div class="col">
+                                <button class="btn btn-default btn-pill" fdprocessedid="9zy8z">O'zgartirish</button>  
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Row -->
+
+</div>
+{% endblock %}

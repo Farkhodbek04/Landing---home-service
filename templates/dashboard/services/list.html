@@ -9,7 +9,7 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Yangliklar</h1>
+                    <h1 class="page-title">Servislar</h1>
                 </div>
                 <!-- PAGE-HEADER END -->
                 
@@ -19,7 +19,7 @@
                     <div class="col-xl-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Yangliklar ro`yxati</h3>
+                                <h3 class="card-title">Servislar ro`yxati</h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -33,12 +33,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for item in items %}
+                                            {% for service in services %}
                                             <tr>
                                                 <td>{{forloop.counter}}</td>
-                                                <td>{{item.title}}</td>
-                                                <td><a href="{% url 'item_update' item.id %}" class="btn btn-icon  btn-success" style="color: white;"><i class="fa fa-arrow-right"></i></a></td>
-                                                <td><a href="{% url 'item_delete' item.id %}" class="btn btn-icon  btn-danger"><i class="fe fe-trash"></i></a></td>
+                                                <td>{{service.title}}</td>
+                                                <td><a href="{% url 'update_service' service.id %}" class="btn btn-icon  btn-success" style="color: white;"><i class="fa fa-arrow-right"></i></a></td>
+                                                <td><a href="{% url 'delete_service' service.id %}" class="btn btn-icon  btn-danger"><i class="fe fe-trash"></i></a></td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
@@ -56,4 +56,4 @@
         </div>
     </div>
     <!--app-content close-->
-    {% endblock %}
+    {% endblock %} 

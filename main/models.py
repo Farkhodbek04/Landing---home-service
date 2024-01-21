@@ -20,6 +20,7 @@ class Contacts(models.Model):
     phone = models.CharField(max_length=30)
     email = models.EmailField(max_length=50)
     message = models.CharField(max_length=255)
+    is_read = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.name

@@ -1,84 +1,73 @@
 {% extends 'dashboard/base.html' %}
-{% load static %}
 {% block content %}
-<!--app-content open-->
-       <div class="main-content app-content mt-0">
-        <div class="side-app">
 
-            <!-- CONTAINER -->
-            <div class="main-container container-fluid">
+<div class="main-container container-fluid">
 
-                <!-- PAGE-HEADER -->
-                <div class="page-header">
-                    <h1 class="page-title">Yanglik yaratish</h1>
+    <!-- PAGE-HEADER -->
+    <div class="page-header">
+        <h1 class="page-title">Service yaratish</h1>
+    </div>
+    <!-- PAGE-HEADER END -->
+    
+    <!-- Row -->
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-xl-6 col-lg-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Service yaratish</h3>
                 </div>
-                <!-- PAGE-HEADER END -->
-                
-                <!-- Row -->
-                <div class="row">
-                    <div class='col-3'></div>
-                    <div class="col-xl-6 col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Yanglik yaratish</h3>
-                            </div>
-                            <form method='post' enctype="multipart/form-data"> 
-                                {% csrf_token %} 
-                            <div class="card-body pb-2">
-                                <div class="row row-sm">
-                                    <div class="form-group">
-                                        <label>Sarlavha</label>
-                                        <input class="form-control  mb-4" placeholder="Input box (success state)" required type="text" name="title">
-                                        <label>Tana qisim</label>
-                                        <textarea class="form-control mb-4 " placeholder="Textarea (success state)" required rows="3" style="height: 60px;" name="body">This is textarea</textarea>
-                                        <label>Categoriyalar</label>
-                                        <select class="form-control select2" name="category_id">
-                                            {% for category in categorys %}
-                                            <option value="{{category.id}}">{{category.name}}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <label>Regionlar</label>
-                                        <select class="form-control select2" name="region_id">
-                                            {% for region in regions %}
-                                            <option value="{{region.id}}">{{region.name}}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <label>Rasm yuklang</label>
-                                        <input type="file" class="dropify" data-bs-height="180" name="image">
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-9"></div>
-                                    <div class="col">
-                                        <button class='btn btn-default btn-pill'>Yaratish</button>  
-                                    </div>
+                <form method="post" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    
+                    <label> Rasm</label>
+
+                    <div class="dropify-wrapper" >
+                        <div class="dropify-message"><span class="file-icon">
+                                <p>Drag and drop a file here or click</p>
+                            </span>
+                            <p class="dropify-error">Ooops, something wrong appended.</p>
+                        </div>
+                        <div class="dropify-loader"></div>
+                        <div class="dropify-errors-container">
+                            <ul></ul>
+                        </div><input type="file" class="dropify" data-bs-height="180" name="icon"><button type="button"
+                            class="dropify-clear">Remove</button>
+                        <div class="dropify-preview"><span class="dropify-render"></span>
+                            <div class="dropify-infos">
+                                <div class="dropify-infos-inner">
+                                    <p class="dropify-filename"><span class="dropify-filename-inner"></span></p>
+                                    <p class="dropify-infos-message">Drag and drop or click to replace</p>
                                 </div>
                             </div>
-                        </form>
                         </div>
                     </div>
-                </div>
-                <!-- End Row -->
+                    
+                    <div class="card-body pb-2">
+                        <div class="row row-sm">
+                            <div class="col-lg">
+                                <label> Sarlavha</label>
+                                <input class="form-control mb-4" placeholder="Sarlavha kiriting" type="text" name="title" fdprocessedid="9w5cno">
+                            </div>
+                        </div>
 
+                        <label> Tana qism</label>
+                        <textarea class="form-control mb-4 " placeholder="Textarea (success state)" required="" rows="3" style="height: 60px;" name="description">This is textarea</textarea>
+                    
+                        <div class="row">
+                            <div class="col-9"></div>
+                            <div class="col">
+                                <button class="btn btn-default btn-pill" fdprocessedid="9zy8z">Yaratish</button>  
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <!-- CONTAINER CLOSED -->
 
         </div>
     </div>
-    <!--app-content close-->
-    {% endblock %}
+    <!-- End Row -->
 
-
-{% block js %}
-<!-- FILE UPLOADES JS -->
-   <script src="{% static 'dashboard/plugins/fileuploads/js/fileupload.js' %}"></script>
-   <script src="{% static 'dashboard/plugins/fileuploads/js/file-upload.js' %}"></script>
-
-   <!-- INTERNAL File-Uploads Js-->
-   <script src="{% static 'dashboard/plugins/fancyuploder/jquery.ui.widget.js' %}"></script>
-   <script src="{% static 'dashboard/plugins/fancyuploder/jquery.fileupload.js' %}"></script>
-   <script src="{% static 'dashboard/plugins/fancyuploder/jquery.iframe-transport.js' %}"></script>
-   <script src="{% static 'dashboard/plugins/fancyuploder/jquery.fancy-fileupload.js' %}"></script>
-   <script src="{% static 'dashboard/plugins/fancyuploder/fancy-uploader.js' %}"></script>
+</div>
 {% endblock %}
